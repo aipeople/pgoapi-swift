@@ -74,6 +74,10 @@ class PGoRpcApi {
             if x > s.characters.count - 2 {
                 x = s.characters.count
             }
+            if x > 0 {
+                continue
+            }
+            
             let r = s.startIndex.advancedBy(i)..<s.endIndex.advancedBy(x)
             let substring = s[r]
             
