@@ -105,6 +105,13 @@ public class PtcOAuth: PGoAuth {
         manager.session.configuration.HTTPAdditionalHeaders = [
             "User-Agent": "niantic"
         ]
+        
+        // Clean cookies
+        if let cookies = manager.session.configuration.HTTPCookieStorage?.cookies {
+            for cookie in cookies {
+                manager.session.configuration.HTTPCookieStorage?.deleteCookie(cookie)
+            }
+        }
 
         Alamofire.request(.GET, PGoEndpoint.LoginInfo)
             .responseJSON { response in
